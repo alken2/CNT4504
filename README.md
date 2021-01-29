@@ -82,39 +82,44 @@ The ServerSideThreader class is for running the server side of the second projec
 The ServerSide class constructs a ServerSide object using the Socket passed from the accept method of the ServerSocket in the ServerSideThreader class. The run method for ServerSide overrides the Thread run method. The ServerSide run method applies nearly the exact same functionality of the ServerSideNew class in the first project but uses the passed Socket object as the client instead.
 
 ## 3.0 Result and Comparisons
-The response time charts show a nonlinear but upwards trend in both comparisons meaning that the more clients request information, the more latency is experienced by the set up.
-Concurrent Test (charts to be uploaded)
-Table 1 Results and comparisons of performing a Concurrent Test
-Group 3 Network Management Application using the Sockets API 5
-Iterative Test
-Table 2 Results and comparisons of performing an Iterative Test
+
+**Concurrent Test**
+![Concurrent Test Results](/Images/concurrent.png)
+
+*Results and comparisons of performing a Concurrent Test*
+
+> The response time charts show a nonlinear but upwards trend in both comparisons meaning that the more clients request information, the more latency is experienced by the set up.
+
+**Iterative Test**
+![Iterative Test Results](/Images/iterative.png)
+
+*Results and comparisons of performing an Iterative Test*
 
 ### 3.1 Test Bed
-The Client and Server were set up in two different VMs hosted on the same physical machine with the following resources: four gigabytes of ram, two logical processors, and running a Linux operating system. (cisvm-wkstn2-134 runs the server side, cisvm-wkstn2-104 runs the client)
-lshw -short
-hostnamectl
-Figure 4 Machine Hostnames and ID's.
-Figure 3 Server Specs such as memory, processor and storage used in the tests.
-Group 3 Network Management Application using the Sockets API 6
+
+> The Client and Server were set up in two different VMs hosted on the same physical machine with the following resources: four gigabytes of ram, two logical processors, and running a Linux operating system. (cisvm-wkstn2-134 runs the server side, cisvm-wkstn2-104 runs the client)
+
+**lshw -short**
+![lshw -short output](/Images/lshw-short.png)
+*Server Specs such as memory, processor and storage used in the tests.*
+
+**hostnamectl**
+![hostnamectl output](/Images/hostnamectl.png)
+*Machine Hostnames and ID's.*
 
 ### 3.2 Studies carried out
 In order to test out the relationship between latency and the number of clients, two different tests were carried out: light load and heavy load. The light load is the date and time call and the heavy load is the netstat call. Both server types were tested with the light load and heavy load, the number of clients were adjusted between one, five, ten, and then added increments of ten until one hundred. There are two graphs per test, there is the light load and heavy load for the iterative server and the light load and heavy load for the concurrent server.
 
 ### 3.3 Results
-Iterative server tests are displayed on the left, and concurrent server tests are displayed on the right. All graphs are comparing the relationship between latency and number of clients.
-Table 3 Graph of the means of different loads for both servers
-Concurrent servers can spawn enough threads to deal with many
-Concurrent servers can spawn enough threads to deal with many requests that individually does not stress the server.requests that individually does not stress the server.
-Group 3 Network Management Application using the Sockets API 7
-The latency of the light load for the iterative server was not
-The latency of the light load for the iterative server was not as smooth as the light load for the concurrent server.as smooth as the light load for the concurrent server.
-Meanwhile, latency for th
-Meanwhile, latency for the iterative server was much smoother e iterative server was much smoother compared to that of the compared to that of the concurrent serverconcurrent server; ; While extreme While extreme variances were noted in the response times of the concurrent variances were noted in the response times of the concurrent servers, we consider this a problem of the server unable to servers, we consider this a problem of the server unable to handle all of the threads during the runtime.handle all of the threads during the runtime.
-Table 4 Graph of the means of different loads for both servers
-Table 5 Means of the different loads
-Group 3 Network Management Application using the Sockets API 8
+
+> Concurrent servers can spawn enough threads to deal with many requests that individually does not stress the server.
+
+> The latency of the light load for the iterative server was not as smooth as the light load for the concurrent server.
+
+> Meanwhile, latency for the iterative server was much smoother compared to that of the concurrent server; While extreme variances were noted in the response times of the concurrent servers, we consider this a problem of the server unable to handle all of the threads during the runtime.
 
 ## 4.0 Conclusion
+
 The iterative server showed an exponential growth in response times as clients were added. This was due to the server having to process requests individually, leading to higher latency as the clients are increased. The concurrent server showed a slower growth in response time as clients were added. This is the result of the server being able to process requests in parallel by the threads created. The graphs of both, heavy and light load for the concurrent server, show a linear growth as more clients were added.
 
 Possible causes for extraneous results may be the result of background processes or network interruptions. An example of such results can be seen in the “Iterative Server Results (Light Load)” graph. Once the number of clients reached 90 there was a large drop-in response time. These erroneous values could be prevented by using a larger sample size, thus accounting for performance increase or decrease. The response times for the concurrent server’s light load from 10-60 clients had remained nearly unchanged. The reasoning on this is because the server can only initiate a certain amount of threads before the thread count exceeds the handled server capacity. This trend was not observed in the concurrent server’s heavy load.
@@ -122,7 +127,6 @@ Possible causes for extraneous results may be the result of background processes
 The concurrent server has more stable performance when performing multiple heavy loads, also it has less latency in the one to thirty client’s range. The concurrent server has better performance and stability when dealing with the light load. Both servers started struggling when the number of clients reached around forty, considering the test bed and hardware constraints, this is normal. At high user counts the presented results are not representative of a perfect concurrent server’s efficiency. This is caused by the physical restrictions of the CPU. When all available CPU threads are in use the other requests must wait for an active thread to end. Once the concurrent server reaches its maximum capacity it behaves like a pseudo-iterative server to clear out its buffer.
 
 Based off the experimental results presented in this paper, a concurrent server is a more practical implementation of a server. It can handle a larger volume of requests at a time. The received load, both heavy and light, are independent of the growth of response times for the server.
-Group 3 Network Management Application using the Sockets API 9
 
 ## REFERENCES
 [1] Ibm.com. 2020. IBM Knowledge Center. [online] Available at: <https://www.ibm.com/support/knowledgecenter/SSLTBW_2.1.0/com.ibm.zos.v2r1.hali001/concurrentanditerativeservers.htm> [Accessed 27 November 2020].
