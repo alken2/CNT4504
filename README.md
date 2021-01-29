@@ -84,15 +84,15 @@ The ServerSide class constructs a ServerSide object using the Socket passed from
 ## 3.0 Result and Comparisons
 
 **Concurrent Test**
-![Concurrent Test Results](/Images/concurrent.png)
 
+![Concurrent Test Results](/Images/concurrent.png)
 *Results and comparisons of performing a Concurrent Test*
 
 > The response time charts show a nonlinear but upwards trend in both comparisons meaning that the more clients request information, the more latency is experienced by the set up.
 
 **Iterative Test**
-![Iterative Test Results](/Images/iterative.png)
 
+![Iterative Test Results](/Images/iterative.png)
 *Results and comparisons of performing an Iterative Test*
 
 ### 3.1 Test Bed
@@ -100,10 +100,12 @@ The ServerSide class constructs a ServerSide object using the Socket passed from
 > The Client and Server were set up in two different VMs hosted on the same physical machine with the following resources: four gigabytes of ram, two logical processors, and running a Linux operating system. (cisvm-wkstn2-134 runs the server side, cisvm-wkstn2-104 runs the client)
 
 **lshw -short**
+
 ![lshw -short output](/Images/lshw-short.png)
 *Server Specs such as memory, processor and storage used in the tests.*
 
 **hostnamectl**
+
 ![hostnamectl output](/Images/hostnamectl.png)
 *Machine Hostnames and ID's.*
 
