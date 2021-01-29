@@ -1,6 +1,6 @@
 # CNT4504
 
-*Note: Our group contains the following members: Patrick Saloum, Javen Watson, Jon Mikael Transfiguracion, Kenneth Alcineus, and William Relken. The following README contains much of the contents of the group paper submitted for the course.*
+*Note: Our group contains the following members: Patrick Saloum, Javen Watson, Jon Mikael Transfiguracion, Kenneth Alcineus, and William Relken. The Java files in Project1 and Project2 folders were completed as a group. The following README contains much of the contents of the group paper submitted for the course.*
 
 # Network Management Application using the Sockets API (November 2020)
 
